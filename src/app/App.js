@@ -11,6 +11,9 @@ import Navbar from '../components/Navbar/Navbar';
 import Register from '../components/Register/Register';
 // import SingleItem from '../components/SingleItem/SingleItem';
 
+import fbConnect from '../firebaseReq/connection';
+fbConnect();
+
 const PrivateRoute = ({component: Component, authed, ...rest}) => {
   return (
     <Route
@@ -49,6 +52,7 @@ class App extends Component {
   state = {
     authed: false,
   }
+
   render () {
     return (
       <div className="App">
