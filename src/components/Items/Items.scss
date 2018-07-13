@@ -1,3 +1,15 @@
 .Items {
-  background-color: lightsalmon;
+  background-color: lightseagreen;
+  color: white;
+  border-radius: 5px;
+  border: 2px solid rgb(60, 242, 233);
+  min-height: 320px;
+  width: 30%;
+  margin: 2% 1%;
+
+  .item-img {
+    max-width: 90%;
+    max-height: 200px;
+    margin-top: 5%;
+  }
 }
