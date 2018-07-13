@@ -10,7 +10,11 @@ class Items extends React.Component {
         <h4 className="item-name">
           {details.itemName}
         </h4>
-        <button className="btn btn-success">Add to My Stuff</button>
+        <button
+          className="btn btn-success"
+        >
+          Add to My Stuff
+        </button>
       </li>
     );
   }
