@@ -2,6 +2,10 @@ import React from 'react';
 import './Items.css';
 
 class Items extends React.Component {
+  addStuffClick = () => {
+    this.props.addToMyStuff(this.props.details.id);
+  }
+
   render () {
     const { details } = this.props;
     return (
@@ -12,6 +16,7 @@ class Items extends React.Component {
         </h4>
         <button
           className="btn btn-success"
+          onClick={this.addStuffClick}
         >
           Add to My Stuff
         </button>

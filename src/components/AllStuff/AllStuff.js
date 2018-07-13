@@ -6,6 +6,13 @@ import './AllStuff.css';
 class AllStuff extends React.Component {
   state = {
     items: [],
+    stuff: {},
+  }
+
+  addToMyStuff = (key) => {
+    const newStuff = {...this.state.items};
+    newStuff[key] = newStuff[key] + 1 || 1;
+    this.setState({stuff: newStuff});
   }
 
   componentDidMount () {
@@ -25,6 +32,7 @@ class AllStuff extends React.Component {
         <Items
           key={item.id}
           details={item}
+          addToMyStuff={this.addToMyStuff}
         />
       );
     });
