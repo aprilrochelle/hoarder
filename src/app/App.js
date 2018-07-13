@@ -4,12 +4,11 @@ import './App.css';
 
 import AllStuff from '../components/AllStuff/AllStuff';
 import Home from '../components/Home/Home';
-// import Items from '../components/Items/Items';
 import Login from '../components/Login/Login';
-// import MyStuff from '../components/MyStuff/MyStuff';
+import MyStuff from '../components/MyStuff/MyStuff';
 import Navbar from '../components/Navbar/Navbar';
 import Register from '../components/Register/Register';
-// import SingleItem from '../components/SingleItem/SingleItem';
+import SingleItem from '../components/SingleItem/SingleItem';
 import firebase from 'firebase';
 import fbConnect from '../firebaseReq/connection';
 fbConnect();
@@ -67,6 +66,10 @@ class App extends Component {
     this.removeListener();
   }
 
+  rollOut = () => {
+    this.setState({authed: false});
+  }
+
   render () {
     return (
       <div className="App">
@@ -74,6 +77,7 @@ class App extends Component {
           <div>
             <Navbar
               authed={this.state.authed}
+              rollOut={this.rollOut}
             />
             <div className="container">
               <div className="row">
@@ -94,10 +98,16 @@ class App extends Component {
                     authed={this.state.authed}
                     component={AllStuff}
                   />
-                  {/* <Items />
-                  <Login />
-                  <MyStuff />
-                  <SingleItem /> */}
+                  <PrivateRoute
+                    path="/mystuff"
+                    authed={this.state.authed}
+                    component={MyStuff}
+                  />
+                  <PrivateRoute
+                    path="/singleitem/:id"
+                    authed={this.state.authed}
+                    component={SingleItem}
+                  />
                 </Switch>
               </div>
             </div>
