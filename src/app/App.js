@@ -10,6 +10,9 @@ import Login from '../components/Login/Login';
 import Navbar from '../components/Navbar/Navbar';
 import Register from '../components/Register/Register';
 // import SingleItem from '../components/SingleItem/SingleItem';
+import firebase from 'firebase';
+import fbConnect from '../firebaseReq/connection';
+fbConnect();
 
 const PrivateRoute = ({component: Component, authed, ...rest}) => {
   return (
@@ -49,6 +52,21 @@ class App extends Component {
   state = {
     authed: false,
   }
+
+  componentDidMount () {
+    this.removeListener = firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        this.setState({authed: true});
+      } else {
+        this.setState({authed: false});
+      }
+    });
+  }
+
+  componentWillUnmount () {
+    this.removeListener();
+  }
+
   render () {
     return (
       <div className="App">
