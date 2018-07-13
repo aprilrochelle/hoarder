@@ -40,7 +40,7 @@ class Register extends React.Component {
     const { user } = this.state;
     return (
       <div className="Register col-xs-12">
-        <div id="login-form">
+        <div id="register-form">
           <h1 className="text-center">Register</h1>
           <form className="form-horizontal col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2">
             <div className="form-group">
