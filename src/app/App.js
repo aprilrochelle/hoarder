@@ -5,10 +5,10 @@ import './App.css';
 import AllStuff from '../components/AllStuff/AllStuff';
 import Home from '../components/Home/Home';
 // import Items from '../components/Items/Items';
-// import Login from '../components/Login/Login';
+import Login from '../components/Login/Login';
 // import MyStuff from '../components/MyStuff/MyStuff';
 import Navbar from '../components/Navbar/Navbar';
-// import Register from '../components/Register/Register';
+import Register from '../components/Register/Register';
 // import SingleItem from '../components/SingleItem/SingleItem';
 
 const PrivateRoute = ({component: Component, authed, ...rest}) => {
@@ -21,6 +21,23 @@ const PrivateRoute = ({component: Component, authed, ...rest}) => {
         ) : (
           <Redirect
             to={{ pathname: '/login', state: {from: props.location} }}
+          />
+        )
+      }
+    />
+  );
+};
+
+const PublicRoute = ({component: Component, authed, ...rest}) => {
+  return (
+    <Route
+      {...rest}
+      render={props =>
+        authed === false ? (
+          <Component {...props} />
+        ) : (
+          <Redirect
+            to={{ pathname: '/allstuff', state: {from: props.location} }}
           />
         )
       }
@@ -42,16 +59,24 @@ class App extends Component {
               <div className="row">
                 <Switch>
                   <Route path="/" exact component={Home}/>
+                  <PublicRoute
+                    path="/register"
+                    authed={this.state.authed}
+                    component={Register}
+                  />
+                  <PublicRoute
+                    path="/login"
+                    authed={this.state.authed}
+                    component={Login}
+                  />
                   <PrivateRoute
                     path="/allstuff"
                     authed={this.state.authed}
                     component={AllStuff}
                   />
-                  {/* <AllStuff />
-                  <Items />
+                  {/* <Items />
                   <Login />
                   <MyStuff />
-                  <Register />
                   <SingleItem /> */}
                 </Switch>
               </div>
