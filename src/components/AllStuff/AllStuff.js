@@ -1,5 +1,5 @@
 import React from 'react';
-
+import Items from '../Items/Items';
 import itemRequests from '../../firebaseReq/items';
 import './AllStuff.css';
 
@@ -22,11 +22,10 @@ class AllStuff extends React.Component {
   render () {
     const itemComponents = this.state.items.map((item) => {
       return (
-        <li>
-          <div className="col-md-3">
-            <h4>{item.itemName}</h4>
-          </div>
-        </li>
+        <Items
+          key={item.id}
+          details={item}
+        />
       );
     });
 
