@@ -1,6 +1,8 @@
 import React from 'react';
 import Items from '../Items/Items';
+import auth from '../../firebaseReq/auth';
 import itemRequests from '../../firebaseReq/items';
+import myItems from '../../firebaseReq/myItems';
 import './AllStuff.css';
 
 class AllStuff extends React.Component {
@@ -9,10 +11,21 @@ class AllStuff extends React.Component {
     stuff: {},
   }
 
-  addToMyStuff = (key) => {
-    const newStuff = {...this.state.items};
-    newStuff[key] = newStuff[key] + 1 || 1;
-    this.setState({stuff: newStuff});
+  addToMyStuff = () => {
+    // const newStuff = {...this.state.items};
+    // newStuff[key] = newStuff[key] + 1 || 1;
+    // this.setState({stuff: newStuff});
+    const newItem = {items: {...this.state.stuff}};
+
+    newItem.uid = auth.getUid();
+    myItems
+      .postRequest(newItem)
+      .then(() => {
+
+      })
+      .catch((err) => {
+        console.error('error in order post', err);
+      });
   }
 
   componentDidMount () {
