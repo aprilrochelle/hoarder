@@ -4,7 +4,6 @@ import './Items.css';
 class Items extends React.Component {
   render () {
     const { details } = this.props;
-    // const image = require(`${details.itemImage}`);
     return (
       <li className="Items col-md-3">
         <img className="item-img" src={details.itemImage} alt={details.itemName}/>
