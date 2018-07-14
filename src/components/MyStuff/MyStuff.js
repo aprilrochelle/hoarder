@@ -21,10 +21,14 @@ class MyStuff extends React.Component {
 
   render () {
     const myStuffComponents = this.state.stuffs.map(stuff => {
+      const singleItemClick = () => {
+        this.props.history.push(`/singleitem/${stuff.id}`);
+      };
       return (
         <button
           key={stuff.id}
           className="col-xs-8 col-xs-offset-2 btn btn-success my-item"
+          onClick={singleItemClick}
         >
           {stuff.itemName}
         </button>

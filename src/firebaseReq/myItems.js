@@ -21,6 +21,19 @@ const getMyStuff = (uid) => {
   });
 };
 
+const getSingleItem = (id) => {
+  return new Promise((resolve, reject) => {
+    axios
+      .get(`${constants.firebaseConfig.databaseURL}/myStuff/${id}.json`)
+      .then((res) => {
+        resolve(res.data);
+      })
+      .catch((err) => {
+        reject(err);
+      });
+  });
+};
+
 const postRequest = (item) => {
   return new Promise((resolve, reject) => {
     axios
@@ -34,4 +47,17 @@ const postRequest = (item) => {
   });
 };
 
-export default { getMyStuff, postRequest };
+const deleteRequest = (id) => {
+  return new Promise((resolve, reject) => {
+    axios
+      .delete(`${constants.firebaseConfig.databaseURL}/myStuff/${id}.json`)
+      .then((res) => {
+        resolve(res);
+      })
+      .catch((err) => {
+        reject(err);
+      });
+  });
+};
+
+export default { getMyStuff, postRequest, deleteRequest, getSingleItem };
