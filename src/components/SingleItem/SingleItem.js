@@ -34,10 +34,16 @@ class SingleItem extends React.Component {
         console.error('error with delete request', err);
       });
   }
+
+  xClickFunction = () => {
+    this.props.history.push('/mystuff');
+  }
+
   render () {
     const {item} = this.state;
     return (
       <div className="SingleItem col-xs-12">
+        <button onClick={this.xClickFunction} className="btn btn-default x-button">&times;</button>
         <h1>{item.itemName}</h1>
         <img src={item.itemImage} alt={item.itemName}/>
         <p>{item.itemDescription}</p>
