@@ -12,9 +12,6 @@ class AllStuff extends React.Component {
   }
 
   addToMyStuff = (itemDetails) => {
-    // const newStuff = {...this.state.items};
-    // newStuff[key] = newStuff[key] + 1 || 1;
-    // this.setState({stuff: newStuff});
     const newItem = {...this.state.stuff};
     newItem.itemName = itemDetails.itemName;
     newItem.itemImage = itemDetails.itemImage;
