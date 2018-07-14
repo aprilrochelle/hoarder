@@ -11,12 +11,14 @@ class AllStuff extends React.Component {
     stuff: {},
   }
 
-  addToMyStuff = () => {
+  addToMyStuff = (itemDetails) => {
     // const newStuff = {...this.state.items};
     // newStuff[key] = newStuff[key] + 1 || 1;
     // this.setState({stuff: newStuff});
-    const newItem = {items: {...this.state.stuff}};
-
+    const newItem = {...this.state.stuff};
+    newItem.itemName = itemDetails.itemName;
+    newItem.itemImage = itemDetails.itemImage;
+    newItem.itemDescription = itemDetails.itemDescription;
     newItem.uid = auth.getUid();
     myItems
       .postRequest(newItem)

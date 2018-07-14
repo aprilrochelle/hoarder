@@ -24,7 +24,7 @@ class MyStuff extends React.Component {
       return (
         <button
           key={stuff.id}
-          className="col-xs-8 col-xs-offset-2 btn btn-info"
+          className="col-xs-8 col-xs-offset-2 btn btn-success my-item"
         >
           {stuff.itemName}
         </button>
