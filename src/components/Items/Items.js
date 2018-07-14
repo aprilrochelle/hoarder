@@ -4,6 +4,9 @@ import './Items.css';
 class Items extends React.Component {
   render () {
     const { details } = this.props;
+    const addStuffClick = () => {
+      this.props.addToMyStuff(this.props.details);
+    };
     return (
       <li className="Items col-md-3">
         <img className="item-img" src={details.itemImage} alt={details.itemName}/>
@@ -12,6 +15,7 @@ class Items extends React.Component {
         </h4>
         <button
           className="btn btn-success"
+          onClick={addStuffClick}
         >
           Add to My Stuff
         </button>

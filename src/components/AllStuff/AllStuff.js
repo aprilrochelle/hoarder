@@ -1,11 +1,33 @@
 import React from 'react';
 import Items from '../Items/Items';
+import auth from '../../firebaseReq/auth';
 import itemRequests from '../../firebaseReq/items';
+import myItems from '../../firebaseReq/myItems';
 import './AllStuff.css';
 
 class AllStuff extends React.Component {
   state = {
     items: [],
+    stuff: {},
+  }
+
+  addToMyStuff = (itemDetails) => {
+    // const newStuff = {...this.state.items};
+    // newStuff[key] = newStuff[key] + 1 || 1;
+    // this.setState({stuff: newStuff});
+    const newItem = {...this.state.stuff};
+    newItem.itemName = itemDetails.itemName;
+    newItem.itemImage = itemDetails.itemImage;
+    newItem.itemDescription = itemDetails.itemDescription;
+    newItem.uid = auth.getUid();
+    myItems
+      .postRequest(newItem)
+      .then(() => {
+
+      })
+      .catch((err) => {
+        console.error('error in order post', err);
+      });
   }
 
   componentDidMount () {
@@ -25,6 +47,7 @@ class AllStuff extends React.Component {
         <Items
           key={item.id}
           details={item}
+          addToMyStuff={this.addToMyStuff}
         />
       );
     });
